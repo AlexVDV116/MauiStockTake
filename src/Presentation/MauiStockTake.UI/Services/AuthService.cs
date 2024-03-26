@@ -1,5 +1,7 @@
 using IdentityModel.OidcClient;
 using MauiStockTake.UI.Helpers;
+using IBrowser = IdentityModel.OidcClient.Browser.IBrowser;
+
  
 namespace MauiStockTake.UI.Services;
  
@@ -7,7 +9,7 @@ public class AuthService : IAuthService
 {
     private readonly OidcClientOptions _options;
  
-    public AuthService()
+    public AuthService(IBrowser browser)
     {
         _options = new OidcClientOptions
         {
@@ -15,7 +17,7 @@ public class AuthService : IAuthService
             ClientId    = Constants.ClientId,
             Scope       = Constants.Scope,
             RedirectUri = Constants.RedirectUri,
-            Browser     = new AuthBrowser()
+            Browser     = browser
         };
     }
     public async Task<bool> LoginAsync()

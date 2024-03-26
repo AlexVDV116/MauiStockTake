@@ -1,2 +1,1 @@
-# Chapter-12
-Code samples for Chapter 12 of .NET MAUI in Action
+.NET MAUI In Action - Chapter 7 & 8

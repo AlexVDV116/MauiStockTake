@@ -1,4 +1,5 @@
-﻿using MauiStockTake.UI.Helpers;
+﻿using MauiStockTake.Client;
+using MauiStockTake.UI.Helpers;
 using Microsoft.Extensions.Logging;
 using IBrowser = IdentityModel.OidcClient.Browser.IBrowser;
 
@@ -22,6 +23,11 @@ public static class MauiProgram
         builder.Services.AddSingleton<IAuthService, AuthService>();
         
         builder.Services.AddTransient<LoginPage>();
+        
+        builder.Services.AddApiClientServices(new ApiClientOptions 
+        { 
+            BaseUrl = Constants.BaseUrl
+        });
         
 
 #if DEBUG

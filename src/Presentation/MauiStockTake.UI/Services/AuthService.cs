@@ -1,4 +1,5 @@
 using IdentityModel.OidcClient;
+using MauiStockTake.Client.Authentication;
 using MauiStockTake.UI.Helpers;
 using IBrowser = IdentityModel.OidcClient.Browser.IBrowser;
 
@@ -31,7 +32,8 @@ public class AuthService : IAuthService
             // TODO: inspect and handle error
             return false;
         }
- 
+        AuthHandler.AuthToken = loginResult.AccessToken;
+
         return true;
     }
 }

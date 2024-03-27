@@ -1,4 +1,4 @@
-using MauiStockTake.UI.Models;
+using MauiStockTake.Shared.Products;
 
 namespace MauiStockTake.UI.Pages;
  
@@ -11,8 +11,8 @@ public partial class ProductPage : ContentPage
         BindingContext = this;
     }
  
-    Product _product;
-    public Product Product
+    ProductDto _product;
+    public ProductDto Product
     {
         get { return _product; }
         set

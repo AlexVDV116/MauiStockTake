@@ -23,6 +23,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<IAuthService, AuthService>();
         
         builder.Services.AddTransient<LoginPage>();
+        builder.Services.AddTransient<InputPage>();
+        builder.Services.AddTransient<InputViewModel>();
         
         builder.Services.AddApiClientServices(new ApiClientOptions 
         { 

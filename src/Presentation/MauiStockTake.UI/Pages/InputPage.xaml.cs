@@ -1,23 +1,14 @@
-using MauiStockTake.Shared.Products;
-
 namespace MauiStockTake.UI.Pages;
-
+ 
 public partial class InputPage : ContentPage
 {
-    public InputPage()
+    private readonly InputViewModel _viewModel;
+ 
+    public InputPage(InputViewModel viewModel)
     {
         InitializeComponent();
-    }
-    
-    private async void Button_Clicked(object sender, EventArgs e)
-    {
-        var product = new ProductDto { Name = "MauiStockTake", ManufacturerName = "BeachBytes" };
- 
-        var pageParams = new Dictionary<string, object>
-        {
-            { "Product", product }
-        };
- 
-        await Shell.Current.GoToAsync("productdetails", pageParams);
+        _viewModel = viewModel;
+        _viewModel.Navigation = Navigation;
+        BindingContext = _viewModel;
     }
 }

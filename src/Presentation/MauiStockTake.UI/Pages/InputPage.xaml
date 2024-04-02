@@ -3,15 +3,57 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiStockTake.UI.Pages.InputPage"
              Title="InputPage">
-    
-    <VerticalStackLayout Spacing="50">
-        <Label 
-            Text="Input Page"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
- 
-        <Button Text="Go to product"
-                WidthRequest="200"
-                Clicked="Button_Clicked"/>
-    </VerticalStackLayout>
+    <Grid Padding="20"
+          RowDefinitions="*, 3*, 2*, 2*, *">
+        
+        <SearchBar x:Name="ProductSearchBar"
+                   Grid.Row="0"
+                   SearchCommand="{Binding SearchProductsCommand}"
+                   Text="{Binding SearchTerm}"
+                   Placeholder="Search for a product..."/>
+
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding SearchResults}"
+                        SelectedItem="{Binding SelectedProduct}"
+                        SelectionMode="Single"
+                        Margin="20,0">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="10"
+                                   Orientation="Vertical"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Name}"
+                               TextColor="Black"
+                               FontSize="Large"/>
+                        <Label Text="{Binding ManufacturerName}"
+                               TextColor="Gray"/>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <ActivityIndicator Grid.Row="1"
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="CenterAndExpand"
+                           IsRunning="True"
+                           IsVisible="{Binding IsLoading}"/>
+
+        <Label Text="{Binding Count}"
+               FontSize="Header"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Grid.Row="2"/>
+
+        <Stepper HorizontalOptions="Center"
+                 VerticalOptions="Center"
+                 Value="{Binding Count}"
+                 Grid.Row="3"/>
+
+        <Button Text="Add count"
+                Command="{Binding AddCountCommand}"
+                Grid.Row="4"/>
+
+    </Grid>
 </ContentPage>
